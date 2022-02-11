@@ -44,8 +44,11 @@ class ReporticoServiceProvider extends ServiceProvider {
                     __DIR__.'/../../config/config.php' => config_path('reportico.php'),
                 ]);
 
-        //\Route::group(['middleware' => ['web','auth']], function() {
-        \Route::group(['middleware' => ['web']], function() {
+        $middlewareList=collect('web');
+        if (config('reportico.auth')) 
+                $middlewareList->push('auth');
+        
+        \Route::group(['middleware' => $middlewareList->toArray()], function() {
 
             \Route::get("reportico", function() 
             {
