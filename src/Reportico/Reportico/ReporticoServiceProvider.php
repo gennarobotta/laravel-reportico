@@ -24,8 +24,10 @@ class ReporticoServiceProvider extends ServiceProvider {
     public function boot()
     {
         // Define Session engine based on Laravel
-        define ( "REPORTICO_SESSION_CLASS", "\Reportico\Reportico\ReporticoSession" );
-        define ( "REPORTICO_BUILDER_CLASS", "\Reportico\Reportico\Builder" );
+        if(!defined("REPORTICO_SESSION_CLASS"))
+            define ( "REPORTICO_SESSION_CLASS", "\Reportico\Reportico\ReporticoSession" );
+        if(!defined("REPORTICO_BUILDER_CLASS"))
+            define ( "REPORTICO_BUILDER_CLASS", "\Reportico\Reportico\Builder" );
         $this->loadViewsFrom(__DIR__.'/../../views', 'reportico');
 
         $this->publishes([
