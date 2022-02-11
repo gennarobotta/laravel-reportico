@@ -124,4 +124,6 @@
     //                    ),
     //            ),
     'dropdown_menu' => false,
+    'auth'=>false,
+
 );
